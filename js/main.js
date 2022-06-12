@@ -5,6 +5,7 @@ window.addEventListener('DOMContentLoaded', () => {
   $btnWoopWoop = document.querySelector('#woopwoop');
   $btnWiFive = document.querySelector('#wifive');
   $btnMeasure = document.querySelector('#measure');
+  $btnReset = document.querySelector('#reset');
 
   $counterCawCaw = document.querySelector('#counter-cawcaw');
   $counterWoopWoop = document.querySelector('#counter-woopwoop');
@@ -38,6 +39,20 @@ window.addEventListener('DOMContentLoaded', () => {
     measureCount++;
     $counterMeasure.innerText = measureCount;
     console.log(event);
+  });
+
+  $btnReset.addEventListener('click', (event) => {
+    cawcawCount = 0;
+    $counterCawCaw.innerText = '';
+    
+    woopwoopCount = 0;
+    $counterWoopWoop.innerText = '';
+    
+    wifiveCount = 0;
+    $counterWiFive.innerText = '';
+    
+    measureCount = 0;
+    $counterMeasure.innerText = '';
   });
 
   // Events on button clicks will bubble up parents

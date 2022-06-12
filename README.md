@@ -14,6 +14,8 @@
     - [ ] Clicking button plays a `measure` sound
 - [ ] Add a counter for number of buttons clicked
     - [ ] Clear counter after `x` seconds
+- [x] Create a `reset` button
+    - [x] Clicking `reset` button resets the counters to 0, removes count from UI
 
 
 ### 😎 UI upgrades
