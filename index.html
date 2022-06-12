@@ -28,6 +28,30 @@
       </div>
     </div>
 
+
+    <script type="module">
+      // Import the functions you need from the SDKs you need
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/9.8.3/firebase-app.js";
+      import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.8.3/firebase-analytics.js";
+      // TODO: Add SDKs for Firebase products that you want to use
+      // https://firebase.google.com/docs/web/setup#available-libraries
+    
+      // Your web app's Firebase configuration
+      // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+      const firebaseConfig = {
+        apiKey: "AIzaSyA4hz_yazjgxZ-YWvpq35llvnTJF47WiCk",
+        authDomain: "cawcaw-with-me.firebaseapp.com",
+        projectId: "cawcaw-with-me",
+        storageBucket: "cawcaw-with-me.appspot.com",
+        messagingSenderId: "1045366063474",
+        appId: "1:1045366063474:web:1d44e28670244e5af79deb",
+        measurementId: "G-XKYG2DRS39"
+      };
+    
+      // Initialize Firebase
+      const app = initializeApp(firebaseConfig);
+      const analytics = getAnalytics(app);
+    </script>
     <script src="js/main.js"></script>
   </body>
 </html>
