@@ -4,12 +4,18 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/main.css" />
     <title>🐦🔊 Caw Caw with Me! 🔊🐦</title>
   </head>
   <body>
     <h1>🐦🔊 Caw Caw with Me 🔊🐦</h1>
     <p>Click buttons for all the fun!</p>
-    <div id="container-all-btns">
+
+    <div id="ready" class="show">
+      <button id="btn-ready">Ready</button>
+    </div>
+
+    <div id="container-all-btns" class="hide">
       <div id="container-cawcaw">
         <button id="cawcaw">🐦 caw caw</button>
         <span id="counter-cawcaw"></span>
@@ -33,10 +39,12 @@
     </div>
 
     <script type="module">
+      // Quickstart docs: https://firebase.google.com/docs/firestore/quickstart
       // Import the functions you need from the SDKs you need
       import { initializeApp } from "https://www.gstatic.com/firebasejs/9.8.3/firebase-app.js";
       import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.8.3/firebase-analytics.js";
-      // TODO: Add SDKs for Firebase products that you want to use
+      // import { auth } from 'https://www.gstatic.com/firebasejs/9.8.3/firebase-auth.js';
+      import * as firestore from 'https://www.gstatic.com/firebasejs/9.8.3/firebase-firestore.js';
       // https://firebase.google.com/docs/web/setup#available-libraries
     
       // Your web app's Firebase configuration
@@ -53,7 +61,12 @@
     
       // Initialize Firebase
       const app = initializeApp(firebaseConfig);
+      const db = firestore.getFirestore(app);
       const analytics = getAnalytics(app);
+      const {collection, addDoc, getDocs} = firestore;
+
+      window.firestore = firestore;
+      window.db = db;
     </script>
     <script src="js/main.js"></script>
   </body>

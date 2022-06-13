@@ -16,6 +16,8 @@
     - [ ] Clear counter after `x` seconds
 - [x] Create a `reset` button
     - [x] Clicking `reset` button resets the counters to 0, removes count from UI
+- [x] Integrate with Firestore
+  - [x] Extract all in-memory counters, replace with realtime sync with Firestore
 
 
 ### 😎 UI upgrades
