@@ -5,20 +5,19 @@
 
 ### 🧱 Basic functionality
 - [x] Create a button for `woop woop`
-    - [ ] Clicking button plays a `woop woop` sound
+    - [x] Clicking button plays a `woop woop` sound
 - [x] Create a button for `caw caw`
-    - [ ] Clicking button plays a `caw caw` sound
+    - [x] Clicking button plays a `caw caw` sound
 - [x] Create a button for `wi-fives`
-    - [ ] Clicking button plays a `wi-fives` sound
+    - [x] Clicking button plays a `wi-fives` sound
 - [x] Create a button for `measure`
-    - [ ] Clicking button plays a `measure` sound
+    - [x] Clicking button plays a `measure` sound
 - [ ] Add a counter for number of buttons clicked
-    - [ ] Clear counter after `x` seconds
+    - [x] Clear counter after `x` seconds
 - [x] Create a `reset` button
     - [x] Clicking `reset` button resets the counters to 0, removes count from UI
 - [x] Integrate with Firestore
   - [x] Extract all in-memory counters, replace with realtime sync with Firestore
-
 
 ### 😎 UI upgrades
 - [ ] Add a nav bar
@@ -30,3 +29,6 @@
 - [ ] Support separate sessions
 - [ ] Add other sound effects
 - [ ] Adjust volume on page
+- [x] Add multiple soundbites for the same sound
+  - [x] Randomize which soundbite is played
+  - [x] Ensure all sessions play the same soundbite

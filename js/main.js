@@ -4,9 +4,29 @@ window.addEventListener('DOMContentLoaded', () => {
   const {collection, doc, updateDoc, onSnapshot} = window.firestore;
 
   // ✨ Audio sources 
-  // TODO: Update audio sources with real ones
-  const lion = new Audio('https://interactive-examples.mdn.mozilla.net/media/cc0-audio/t-rex-roar.mp3');
-  const thump = new Audio('assets/audio/thump.mp3');
+  const cawcaw1 = new Audio('assets/audio/cawcaw-1.mp3');
+  const cawcaw2 = new Audio('assets/audio/cawcaw-2.mp3');
+  const cawcaw3 = new Audio('assets/audio/cawcaw-3.mp3');
+  const cawcaw4 = new Audio('assets/audio/cawcaw-4.mp3');
+  const cawcawList = [cawcaw1, cawcaw2, cawcaw3, cawcaw4];
+
+  const woopwoop1 = new Audio('assets/audio/woopwoop-1.mp3');
+  const woopwoop2 = new Audio('assets/audio/woopwoop-2.mp3');
+  const woopwoop3 = new Audio('assets/audio/woopwoop-3.mp3');
+  const woopwoop4 = new Audio('assets/audio/woopwoop-4.mp3');
+  const woopwoopList = [woopwoop1, woopwoop2, woopwoop3, woopwoop4];
+  
+  const wifive1 = new Audio('assets/audio/wifive-1.mp3');
+  const wifive2 = new Audio('assets/audio/wifive-2.mp3');
+  const wifive3 = new Audio('assets/audio/wifive-3.mp3');
+  const wifive4 = new Audio('assets/audio/wifive-4.mp3');
+  const wifiveList = [wifive1, wifive2, wifive3, wifive4];
+
+  const measure1 = new Audio('assets/audio/measure-1.mp3');
+  const measure2 = new Audio('assets/audio/measure-2.mp3');
+  const measure3 = new Audio('assets/audio/measure-3.mp3');
+  const measure4 = new Audio('assets/audio/measure-4.mp3');
+  const measureList = [measure1, measure2, measure3, measure4];
 
   // ✨ HTML Elements
   $containerAllBtns = document.querySelector('#container-all-btns');
@@ -27,7 +47,7 @@ window.addEventListener('DOMContentLoaded', () => {
   // ✨ Set up Firestore
   const appRef = collection(db, "app");
   const stateRef = doc(db, "app", "state");
-  let appState = { cawcaw: 0, woopwoop: 0, isLoaded: false };
+  let appState = { cawcaw: 0, woopwoop: 0, wifive: 0, measure: 0, soundBiteIndex: 0, isLoaded: false };
   let userIsReady = false;
   
   const unsub = onSnapshot(stateRef, (doc) => {
@@ -77,23 +97,19 @@ window.addEventListener('DOMContentLoaded', () => {
 
     // Verify count for sound has changed, and the updated count is not 0
     if (countHasChangedFor('cawcaw', appAudioState) && nextState.cawcaw) {
-      // TODO: replace sound
-      lion.cloneNode(true).play();
+      cawcawList[nextState.soundBiteIndex].cloneNode(true).play();
     };
 
     if (countHasChangedFor('woopwoop', appAudioState) && nextState.woopwoop) {
-      // TODO: replace sound
-      thump.cloneNode(true).play();
+      woopwoopList[nextState.soundBiteIndex].cloneNode(true).play();
     }
 
     if (countHasChangedFor('wifive', appAudioState) && nextState.wifive) {
-      // TODO: replace sound
-      lion.cloneNode(true).play();
+      wifiveList[nextState.soundBiteIndex].cloneNode(true).play();
     }
 
     if (countHasChangedFor('measure', appAudioState) && nextState.measure) {
-      // TODO: replace sound
-      thump.cloneNode(true).play();
+      measureList[nextState.soundBiteIndex].cloneNode(true).play();
     }
 
     console.log('ps', prevState);
@@ -108,6 +124,8 @@ window.addEventListener('DOMContentLoaded', () => {
 
     return prevState[soundName] !== nextState[soundName];
   };
+
+  const randomizedIndex = () => { return Math.round(Math.random() * 3) };
 
   // ✨ Event listeners
   $btnReady.addEventListener('click', () => {
@@ -125,19 +143,19 @@ window.addEventListener('DOMContentLoaded', () => {
   });
   
   $btnCawCaw.addEventListener('click', async (event) => {
-    await updateDoc(doc(appRef, "state"), { cawcaw: appState.cawcaw + 1 });
+    await updateDoc(doc(appRef, "state"), { cawcaw: appState.cawcaw + 1, soundBiteIndex: randomizedIndex() });
   });
 
   $btnWoopWoop.addEventListener('click', async (event) => {
-    await updateDoc(doc(appRef, "state"), { woopwoop: appState.woopwoop + 1 });
+    await updateDoc(doc(appRef, "state"), { woopwoop: appState.woopwoop + 1, soundBiteIndex: randomizedIndex() });
   });
 
   $btnWiFive.addEventListener('click', async (event) => {
-    await updateDoc(doc(appRef, "state"), { woopwoop: appState.wifive + 1 });
+    await updateDoc(doc(appRef, "state"), { wifive: appState.wifive + 1, soundBiteIndex: randomizedIndex() });
   });
 
   $btnMeasure.addEventListener('click', async (event) => {
-    await updateDoc(doc(appRef, "state"), { woopwoop: appState.measure + 1 });
+    await updateDoc(doc(appRef, "state"), { measure: appState.measure + 1, soundBiteIndex: randomizedIndex() });
   });
 
   $btnReset.addEventListener('click', async (event) => {
