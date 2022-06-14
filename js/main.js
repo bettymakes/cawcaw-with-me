@@ -40,6 +40,12 @@ window.addEventListener('DOMContentLoaded', () => {
   const choochoo4 = new Audio('assets/audio/choochoo-4.mp3');
   const choochooList = [choochoo1, choochoo2, choochoo3, choochoo4];
 
+  const goodvibes1 = new Audio('assets/audio/goodvibes-1.mp3');
+  const goodvibes2 = new Audio('assets/audio/goodvibes-2.mp3');
+  const goodvibes3 = new Audio('assets/audio/goodvibes-3.mp3');
+  const goodvibes4 = new Audio('assets/audio/goodvibes-4.mp3');
+  const goodvibesList = [goodvibes1, goodvibes2, goodvibes3, goodvibes4];
+
   // ✨ HTML Elements
   $containerAllBtns = document.querySelector('#container-all-btns');
   $containerReady = document.querySelector('#ready');
@@ -50,6 +56,7 @@ window.addEventListener('DOMContentLoaded', () => {
   $btnMeasure = document.querySelector('#measure');
   $btnCheers = document.querySelector('#cheers');
   $btnChooChoo = document.querySelector('#choochoo');
+  $btnGoodVibes = document.querySelector('#goodvibes');
   $btnReset = document.querySelector('#reset');
   $btnReady = document.querySelector('#btn-ready');
 
@@ -59,6 +66,7 @@ window.addEventListener('DOMContentLoaded', () => {
   $counterMeasure = document.querySelector('#counter-measure');
   $counterCheers = document.querySelector('#counter-cheers');
   $counterChooChoo = document.querySelector('#counter-choochoo');
+  $counterGoodVibes = document.querySelector('#counter-goodvibes');
 
 
   // ✨ Set up Firestore
@@ -71,6 +79,7 @@ window.addEventListener('DOMContentLoaded', () => {
     measure: 0,
     cheers: 0,
     choochoo: 0,
+    goodvibes: 0,
     soundBiteIndex: 0,
     isLoaded: false,
   };
@@ -103,6 +112,7 @@ window.addEventListener('DOMContentLoaded', () => {
       measure: measureCount,
       cheers: cheersCount,
       choochoo: choochooCount,
+      goodvibes: goodvibesCount,
       isLoaded,
     } = appState;
 
@@ -114,6 +124,7 @@ window.addEventListener('DOMContentLoaded', () => {
     $counterMeasure.innerText = measureCount || "";
     $counterCheers.innerText = cheersCount || "";
     $counterChooChoo.innerText = choochooCount || "";
+    $counterGoodVibes.innerText = goodvibesCount || "";
 
   };
 
@@ -149,6 +160,10 @@ window.addEventListener('DOMContentLoaded', () => {
 
     if (countHasChangedFor('choochoo', appAudioState) && nextState.choochoo) {
       choochooList[nextState.soundBiteIndex].cloneNode(true).play();
+    }
+
+    if (countHasChangedFor('goodvibes', appAudioState) && nextState.goodvibes) {
+      goodvibesList[nextState.soundBiteIndex].cloneNode(true).play();
     }
 
     console.log('ps', prevState);
@@ -205,6 +220,10 @@ window.addEventListener('DOMContentLoaded', () => {
     await updateDoc(doc(appRef, "state"), { choochoo: appState.choochoo + 1, soundBiteIndex: randomizedIndex() });
   });
 
+  $btnGoodVibes.addEventListener('click', async (event) => {
+    await updateDoc(doc(appRef, "state"), { goodvibes: appState.goodvibes + 1, soundBiteIndex: randomizedIndex() });
+  });
+
   $btnReset.addEventListener('click', async (event) => {
     await updateDoc(doc(appRef, "state"), {
       cawcaw: 0,
@@ -213,6 +232,7 @@ window.addEventListener('DOMContentLoaded', () => {
       measure: 0,
       cheers: 0,
       choochoo: 0,
+      goodvibes: 0,
     });
   });
 });
