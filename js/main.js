@@ -34,6 +34,12 @@ window.addEventListener('DOMContentLoaded', () => {
   const cheers4 = new Audio('assets/audio/cheers-4.mp3');
   const cheersList = [cheers1, cheers2, cheers3, cheers4];
 
+  const choochoo1 = new Audio('assets/audio/choochoo-1.mp3');
+  const choochoo2 = new Audio('assets/audio/choochoo-2.mp3');
+  const choochoo3 = new Audio('assets/audio/choochoo-3.mp3');
+  const choochoo4 = new Audio('assets/audio/choochoo-4.mp3');
+  const choochooList = [choochoo1, choochoo2, choochoo3, choochoo4];
+
   // ✨ HTML Elements
   $containerAllBtns = document.querySelector('#container-all-btns');
   $containerReady = document.querySelector('#ready');
@@ -43,6 +49,7 @@ window.addEventListener('DOMContentLoaded', () => {
   $btnWiFive = document.querySelector('#wifive');
   $btnMeasure = document.querySelector('#measure');
   $btnCheers = document.querySelector('#cheers');
+  $btnChooChoo = document.querySelector('#choochoo');
   $btnReset = document.querySelector('#reset');
   $btnReady = document.querySelector('#btn-ready');
 
@@ -51,11 +58,22 @@ window.addEventListener('DOMContentLoaded', () => {
   $counterWiFive = document.querySelector('#counter-wifive');
   $counterMeasure = document.querySelector('#counter-measure');
   $counterCheers = document.querySelector('#counter-cheers');
+  $counterChooChoo = document.querySelector('#counter-choochoo');
+
 
   // ✨ Set up Firestore
   const appRef = collection(db, "app");
   const stateRef = doc(db, "app", "state");
-  let appState = { cawcaw: 0, woopwoop: 0, wifive: 0, measure: 0, cheers: 0, soundBiteIndex: 0, isLoaded: false };
+  let appState = { 
+    cawcaw: 0,
+    woopwoop: 0,
+    wifive: 0,
+    measure: 0,
+    cheers: 0,
+    choochoo: 0,
+    soundBiteIndex: 0,
+    isLoaded: false,
+  };
   let userIsReady = false;
   
   const unsub = onSnapshot(stateRef, (doc) => {
@@ -84,7 +102,7 @@ window.addEventListener('DOMContentLoaded', () => {
       wifive: wifiveCount,
       measure: measureCount,
       cheers: cheersCount,
-
+      choochoo: choochooCount,
       isLoaded,
     } = appState;
 
@@ -95,6 +113,8 @@ window.addEventListener('DOMContentLoaded', () => {
     $counterWiFive.innerText = wifiveCount || "";
     $counterMeasure.innerText = measureCount || "";
     $counterCheers.innerText = cheersCount || "";
+    $counterChooChoo.innerText = choochooCount || "";
+
   };
 
   const playSoundOnChange = (prevState, nextState) => {
@@ -125,6 +145,10 @@ window.addEventListener('DOMContentLoaded', () => {
 
     if (countHasChangedFor('cheers', appAudioState) && nextState.cheers) {
       cheersList[nextState.soundBiteIndex].cloneNode(true).play();
+    }
+
+    if (countHasChangedFor('choochoo', appAudioState) && nextState.choochoo) {
+      choochooList[nextState.soundBiteIndex].cloneNode(true).play();
     }
 
     console.log('ps', prevState);
@@ -177,6 +201,10 @@ window.addEventListener('DOMContentLoaded', () => {
     await updateDoc(doc(appRef, "state"), { cheers: appState.cheers + 1, soundBiteIndex: randomizedIndex() });
   });
 
+  $btnChooChoo.addEventListener('click', async (event) => {
+    await updateDoc(doc(appRef, "state"), { choochoo: appState.choochoo + 1, soundBiteIndex: randomizedIndex() });
+  });
+
   $btnReset.addEventListener('click', async (event) => {
     await updateDoc(doc(appRef, "state"), {
       cawcaw: 0,
@@ -184,6 +212,7 @@ window.addEventListener('DOMContentLoaded', () => {
       wifive: 0,
       measure: 0,
       cheers: 0,
+      choochoo: 0,
     });
   });
 });
