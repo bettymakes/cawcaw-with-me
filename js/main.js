@@ -52,6 +52,18 @@ window.addEventListener('DOMContentLoaded', () => {
   const itme4 = new Audio('assets/audio/itme-4.mp3');
   const itmeList = [itme1, itme2, itme3, itme4];
 
+  const sparkle1 = new Audio('assets/audio/sparkle-1.mp3');
+  const sparkle2 = new Audio('assets/audio/sparkle-2.mp3');
+  const sparkle3 = new Audio('assets/audio/sparkle-3.mp3');
+  const sparkle4 = new Audio('assets/audio/sparkle-4.mp3');
+  const sparkleList = [sparkle1, sparkle2, sparkle3, sparkle4];
+
+  const womp1 = new Audio('assets/audio/womp-1.mp3');
+  const womp2 = new Audio('assets/audio/womp-2.mp3');
+  const womp3 = new Audio('assets/audio/womp-3.mp3');
+  const womp4 = new Audio('assets/audio/womp-4.mp3');
+  const wompList = [womp1, womp2, womp3, womp4];
+
   // ✨ HTML Elements
   $containerAllBtns = document.querySelector('#container-all-btns');
   $containerReady = document.querySelector('#ready');
@@ -64,6 +76,8 @@ window.addEventListener('DOMContentLoaded', () => {
   $btnChooChoo = document.querySelector('#choochoo');
   $btnGoodVibes = document.querySelector('#goodvibes');
   $btnItMe = document.querySelector('#itme');
+  $btnSparkle = document.querySelector('#sparkle');
+  $btnWomp = document.querySelector('#womp');
   $btnReset = document.querySelector('#reset');
   $btnReady = document.querySelector('#btn-ready');
 
@@ -75,6 +89,8 @@ window.addEventListener('DOMContentLoaded', () => {
   $counterChooChoo = document.querySelector('#counter-choochoo');
   $counterGoodVibes = document.querySelector('#counter-goodvibes');
   $counterItMe = document.querySelector('#counter-itme');
+  $counterSparkle = document.querySelector('#counter-sparkle');
+  $counterWomp = document.querySelector('#counter-womp');
 
 
   // ✨ Set up Firestore
@@ -89,6 +105,8 @@ window.addEventListener('DOMContentLoaded', () => {
     choochoo: 0,
     goodvibes: 0,
     itme: 0,
+    sparkle: 0,
+    womp: 0,
     soundBiteIndex: 0,
     isLoaded: false,
   };
@@ -123,6 +141,8 @@ window.addEventListener('DOMContentLoaded', () => {
       choochoo: choochooCount,
       goodvibes: goodvibesCount,
       itme: itmeCount,
+      sparkle: sparkleCount,
+      womp: wompCount,
       isLoaded,
     } = appState;
 
@@ -136,7 +156,8 @@ window.addEventListener('DOMContentLoaded', () => {
     $counterChooChoo.innerText = choochooCount || "";
     $counterGoodVibes.innerText = goodvibesCount || "";
     $counterItMe.innerText = itmeCount || "";
-
+    $counterSparkle.innerText = sparkleCount || "";
+    $counterWomp.innerText = wompCount || "";
   };
 
   const playSoundOnChange = (prevState, nextState) => {
@@ -179,6 +200,14 @@ window.addEventListener('DOMContentLoaded', () => {
 
     if (countHasChangedFor('itme', appAudioState) && nextState.itme) {
       itmeList[nextState.soundBiteIndex].cloneNode(true).play();
+    }
+
+    if (countHasChangedFor('sparkle', appAudioState) && nextState.sparkle) {
+      sparkleList[nextState.soundBiteIndex].cloneNode(true).play();
+    }
+
+    if (countHasChangedFor('womp', appAudioState) && nextState.womp) {
+      wompList[nextState.soundBiteIndex].cloneNode(true).play();
     }
 
     console.log('ps', prevState);
@@ -247,6 +276,14 @@ window.addEventListener('DOMContentLoaded', () => {
     await updateDoc(doc(appRef, "state"), { itme: appState.itme + 1, soundBiteIndex: randomizedIndex() });
   });
 
+  $btnSparkle.addEventListener('click', async (event) => {
+    await updateDoc(doc(appRef, "state"), { sparkle: appState.sparkle + 1, soundBiteIndex: randomizedIndex() });
+  });
+
+  $btnWomp.addEventListener('click', async (event) => {
+    await updateDoc(doc(appRef, "state"), { womp: appState.womp + 1, soundBiteIndex: randomizedIndex() });
+  });
+
   $btnReset.addEventListener('click', async (event) => {
     await updateDoc(doc(appRef, "state"), {
       cawcaw: 0,
@@ -257,6 +294,8 @@ window.addEventListener('DOMContentLoaded', () => {
       choochoo: 0,
       goodvibes: 0,
       itme: 0,
+      sparkle: 0,
+      womp: 0,
     });
   });
 });
