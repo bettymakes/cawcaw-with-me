@@ -9,59 +9,127 @@
     <title>🐦🔊 Caw Caw with Me! 🔊🐦</title>
   </head>
   <body>
-    <h1>🐦🔊 Caw Caw with Me 🔊🐦</h1>
-    <p>Click buttons for all the fun!</p>
+    <div class="container-base container-body">
+      <header>
+        <h1 class="logo">
+          <span class="logo-cawcaw">caw caw</span>
+          <span class="logo-withme">
+            <span class="logo-withme-content">with me</span>
+          </span>
+        </h1>
+      </header>
+      
+      <p class="tagline">Click buttons for all the fun!</p>
+      
+      <div id="ready" class="show">
+        <div class="btn-ready-wrapper">
+          <button id="btn-ready" class="btn btn-ready">Ready</button>
+        </div>
+      </div>
+  
+      <main id="container-all-btns" class="container-main hide">
+        <div id="container-cawcaw">
+          <button id="cawcaw" class="btn">
+            <span>🐦</span>
+            <span>caw caw</span>
+            <span id="counter-cawcaw" class="counter"></span>
+          </button>
+        </div>
+        <div id="container-woopwoop">
+          <button id="woopwoop" class="btn">
+            <span>🥳</span>
+            <span>woop woop</span>
+            <span id="counter-woopwoop" class="counter"></span>
+          </button>
+        </div>
+        <div id="container-wifive">
+          <button id="wifive" class="btn">
+            <span>🙌</span> 
+            <span>wi-five</span>
+            <span id="counter-wifive" class="counter"></span>
+          </button>
+        </div>
+        <div id="container-measure">
+          <button id="measure" class="btn">
+            <span>📏</span> 
+            <span>measure</span>
+            <span id="counter-measure" class="counter"></span>
+          </button>
+        </div>
+        <div id="container-cheers">
+          <button id="cheers" class="btn">
+            <span>📏</span> 
+            <span>cheers</span>
+            <span id="counter-cheers" class="counter"></span>
+          </button>
+        </div>
+        <div id="container-choochoo">
+          <button id="choochoo" class="btn">
+            <span>🚂</span> 
+            <span>choo choo</span>
+            <span id="counter-choochoo" class="counter"></span>
+          </button>
+        </div>
+        <div id="container-goodvibes">
+          <button id="goodvibes" class="btn">
+            <span>📏</span> 
+            <span>good vibes</span>
+            <span id="counter-goodvibes" class="counter"></span>
+          </button>
+        </div>
+        <div id="container-itme">
+          <button id="itme" class="btn">
+            <span>📏</span> 
+            <span>it me</span>
+            <span id="counter-itme" class="counter"></span>
+          </button>
+        </div>
+        <div id="container-sparkle">
+          <button id="sparkle" class="btn">
+            <span>📏 </span>
+            <span>sparkle</span>
+            <span id="counter-sparkle" class="counter"></span>
+          </button>
+        </div>
+        <div id="container-womp">
+          <button id="womp" class="btn">
+            <span>📏</span> 
+            <span>womp womp</span>
+            <span id="counter-womp" class="counter"></span>
+          </button>
+        </div>
+      </main>
 
-    <div id="ready" class="show">
-      <button id="btn-ready">Ready</button>
-    </div>
+      <div>
+        <button id="reset" class="btn-reset">
+          <span>🔁</span> 
+          <span>Reset counter</span> 
+        </button>
+      </div>
 
-    <div id="container-all-btns" class="hide">
-      <div id="container-cawcaw">
-        <button id="cawcaw">🐦 caw caw</button>
-        <span id="counter-cawcaw"></span>
-      </div>
-      <div id="container-woopwoop">
-        <button id="woopwoop">🥳 woop woop</button>
-        <span id="counter-woopwoop"></span>
-      </div>
-      <div id="container-wifive">
-        <button id="wifive">🙌 wi-five</button>
-        <span id="counter-wifive"></span>
-      </div>
-      <div id="container-measure">
-        <button id="measure">📏 measure</button>
-        <span id="counter-measure"></span>
-      </div>
-      <div id="container-cheers">
-        <button id="cheers">📏 cheers</button>
-        <span id="counter-cheers"></span>
-      </div>
-      <div id="container-choochoo">
-        <button id="choochoo">🚂 choo choo</button>
-        <span id="counter-choochoo"></span>
-      </div>
-      <div id="container-goodvibes">
-        <button id="goodvibes">📏 good vibes</button>
-        <span id="counter-goodvibes"></span>
-      </div>
-      <div id="container-itme">
-        <button id="itme">📏 it me</button>
-        <span id="counter-itme"></span>
-      </div>
-      <div id="container-sparkle">
-        <button id="sparkle">📏 sparkle</button>
-        <span id="counter-sparkle"></span>
-      </div>
-      <div id="container-womp">
-        <button id="womp">📏 womp womp</button>
-        <span id="counter-womp"></span>
+      <div>
+        <p class="copyright">&copy; 2022. Made with 💚 in the "6️⃣"</p>
       </div>
     </div>
+    
+    <footer class="footer">
+      <div class="container-base">
+        <div class="footer-links">
+          <span class="twitter-handles">
+            <span class="dynamic-duo">
+              <a href="https://twitter.com/bettymakes" target="_blank">@bettymakes</a>
+              <a href="https://twitter.com/aellispierce" target="_blank">@aellispierce</a>
+            </span>
 
-    <div>
-      <button id="reset">🔁 Reset counter</button>
-    </div>
+            <hr class="divider" role="separator" aria-orientation="vertical" />
+            
+            <a href="https://twitter.com/OngMaple" target="_blank">@ongmaple</a>
+          </span>
+          
+          <a href="https://docs.google.com/presentation/d/1JWKobdu4V24d98EhX9XwK33CTGcmkkEoVkoxRtRBXXo/edit#slide=id.g127856ddd74_0_105" target="_blank">slide deck</a> 
+        </div>
+      </div>
+    </footer>
 
     <script type="module">
       // Quickstart docs: https://firebase.google.com/docs/firestore/quickstart
