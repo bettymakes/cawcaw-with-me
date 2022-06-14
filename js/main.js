@@ -194,7 +194,11 @@ window.addEventListener('DOMContentLoaded', () => {
     return prevState[soundName] !== nextState[soundName];
   };
 
-  const randomizedIndex = () => { return Math.round(Math.random() * 3) };
+  const randomizedIndex = () => { 
+    const nextIndex = Math.round(Math.random() * 3);
+
+    return nextIndex !== appState.soundBiteIndex ? nextIndex : randomizedIndex();
+  };
 
   // ✨ Event listeners
   $btnReady.addEventListener('click', () => {
