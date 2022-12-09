@@ -186,3 +186,11 @@ a {
   display: block;
   margin: 0;
 }
+
+/* TODO: Remove this when another button is added after "bye" */
+#container-bye {
+  grid-column-start: 1;
+  grid-column-end: 3;
+  grid-row-start: 6;
+  grid-row-end: 7;
+}

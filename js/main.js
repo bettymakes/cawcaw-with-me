@@ -64,6 +64,12 @@ window.addEventListener('DOMContentLoaded', () => {
   const womp4 = new Audio('assets/audio/womp-4.mp3');
   const wompList = [womp1, womp2, womp3, womp4];
 
+  const bye1 = new Audio('assets/audio/bye-1.mp3');
+  const bye2 = new Audio('assets/audio/bye-2.mp3');
+  const bye3 = new Audio('assets/audio/bye-3.mp3');
+  const bye4 = new Audio('assets/audio/bye-4.mp3');
+  const byeList = [bye1, bye2, bye3, bye4];
+
   // ✨ HTML Elements
   $containerAllBtns = document.querySelector('#container-all-btns');
   $containerReady = document.querySelector('#ready');
@@ -80,6 +86,7 @@ window.addEventListener('DOMContentLoaded', () => {
   $btnWomp = document.querySelector('#womp');
   $btnReset = document.querySelector('#reset');
   $btnReady = document.querySelector('#btn-ready');
+  $btnBye = document.querySelector('#bye');
 
   $counterCawCaw = document.querySelector('#counter-cawcaw');
   $counterWoopWoop = document.querySelector('#counter-woopwoop');
@@ -91,6 +98,7 @@ window.addEventListener('DOMContentLoaded', () => {
   $counterItMe = document.querySelector('#counter-itme');
   $counterSparkle = document.querySelector('#counter-sparkle');
   $counterWomp = document.querySelector('#counter-womp');
+  $counterBye = document.querySelector('#counter-bye');
 
 
   // ✨ Set up Firestore
@@ -107,6 +115,7 @@ window.addEventListener('DOMContentLoaded', () => {
     itme: 0,
     sparkle: 0,
     womp: 0,
+    bye: 0,
     soundBiteIndex: 0,
     isLoaded: false,
   };
@@ -143,6 +152,7 @@ window.addEventListener('DOMContentLoaded', () => {
       itme: itmeCount,
       sparkle: sparkleCount,
       womp: wompCount,
+      bye: byeCount,
       isLoaded,
     } = appState;
 
@@ -158,6 +168,7 @@ window.addEventListener('DOMContentLoaded', () => {
     $counterItMe.innerText = itmeCount || "";
     $counterSparkle.innerText = sparkleCount || "";
     $counterWomp.innerText = wompCount || "";
+    $counterBye.innerText = byeCount || "";
   };
 
   const playSoundOnChange = (prevState, nextState) => {
@@ -208,6 +219,10 @@ window.addEventListener('DOMContentLoaded', () => {
 
     if (countHasChangedFor('womp', appAudioState) && nextState.womp) {
       wompList[nextState.soundBiteIndex].cloneNode(true).play();
+    }
+
+    if (countHasChangedFor('bye', appAudioState) && nextState.bye) {
+      byeList[nextState.soundBiteIndex].cloneNode(true).play();
     }
 
     console.log('ps', prevState);
@@ -284,6 +299,10 @@ window.addEventListener('DOMContentLoaded', () => {
     await updateDoc(doc(appRef, "state"), { womp: appState.womp + 1, soundBiteIndex: randomizedIndex() });
   });
 
+  $btnBye.addEventListener('click', async (event) => {
+    await updateDoc(doc(appRef, "state"), { bye: appState.bye + 1, soundBiteIndex: randomizedIndex() });
+  });
+
   $btnReset.addEventListener('click', async (event) => {
     await updateDoc(doc(appRef, "state"), {
       cawcaw: 0,
@@ -296,6 +315,7 @@ window.addEventListener('DOMContentLoaded', () => {
       itme: 0,
       sparkle: 0,
       womp: 0,
+      bye: 0,
     });
   });
 });
